@@ -46,7 +46,7 @@ Lim, B., Son, S., Kim, H., Nah, S., & Mu Lee, K. (2017). Enhanced deep residual 
 
 - 해상도 별(x2, x3, x4) 네트워크 개별 학습: 해상도 별 네트워크 구조는 Upsampling을 제외하고 모두 같음 & Upsampling의 경우 SRGAN과 동일하게 Shuffle을 사용하며 학습 가능
 - Residual scaling을 적용하여 Feature map의 개수를 늘려 더 많은 정보를 학습
-- x2 scale에 대한 사전 학습된 정보를 이용하여 x3, x4 scale을 학습 &#8594; 더 빠른 
+- x2 scale에 대한 사전 학습된 정보를 이용하여 x3, x4 scale을 학습 &#8594; 더 빠른 수렴 가능
   
 
 ## 3. ESRGAN
