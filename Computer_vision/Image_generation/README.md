@@ -42,8 +42,10 @@ Lim, B., Son, S., Kim, H., Nah, S., & Mu Lee, K. (2017). Enhanced deep residual 
 - Batch Normalization(BN) 제거
 
   BNormalization은 특정 범위로 정규화를 하는 역할을 하므로 기존의 Classificaton & Detection 문제와 다르게 제거하는 것이 좋음 &#8594; GPU 메모리 사용량을 줄여 결과적으로 더 큰 모델 제작이 가능
+  
 <img src = "./img/edsr/Comparsion_residual_block.PNG" width="50%"></center>
 - 해상도 별(x2, x3, x4) 네트워크 개별 학습: 해상도 별 네트워크 구조는 Upsampling을 제외하고 모두 같음 & Upsampling의 경우 SRGAN과 동일하게 Shuffle을 사용하며 학습 가능
+
 <img src = "./img/edsr/Architecture(EDSR).PNG" width="50%"></center>
 - Residual scaling을 적용하여 Feature map의 개수를 늘려 더 많은 정보를 학습
 - x2 scale에 대한 사전 학습된 정보를 이용하여 x3, x4 scale을 학습 &#8594; 더 빠른 수렴 가능
