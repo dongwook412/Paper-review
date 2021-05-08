@@ -29,8 +29,20 @@ Ledig, C., Theis, L., Huszár, F., Caballero, J., Cunningham, A., Acosta, A., ..
 - Advrsarial loss  
 <img src = "./img/srgan/loss4.PNG"></center>  
 
+## 2. EDSR
+Lim, B., Son, S., Kim, H., Nah, S., & Mu Lee, K. (2017). Enhanced deep residual networks for single image super-resolution. In Proceedings of the IEEE conference on computer vision and pattern recognition workshops (pp. 136-144).
 
-## 2. ESRGAN
+### 요약
+- ResNet 구조에서 필요하지 않은 모듈을 제거하여 성능을 높임(EDSR)
+- 여러 scale에 공통으로 포함되는 정보를 공유하는 새로운 multi-scale 구조를 제안(MDSR)
+
+### Method
+#### (1) EDSR Architecture
+- Batch Normalization(BN) 제거
+  Normalization은 특정 범위로 정규화를 하는 역할을 하므로 기존의 Classificaton & Detection 문제와 다르게 제거하는 것이 좋음 &#8594; GPU 메모리 사용량을 줄여 결과적으로 더 큰 모델 제작이 가능
+<img src = "./img/edsr/Comparision_residual_block" width="50%"></center>
+
+## 3. ESRGAN
 Wang, X., Yu, K., Wu, S., Gu, J., Liu, Y., Dong, C., ... & Change Loy, C. (2018). Esrgan: Enhanced super-resolution generative adversarial networks. In Proceedings of the European Conference on Computer Vision (ECCV) Workshops (pp. 0-0).
 
 ### 요약
