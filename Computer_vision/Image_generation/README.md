@@ -35,6 +35,7 @@ Lim, B., Son, S., Kim, H., Nah, S., & Mu Lee, K. (2017). Enhanced deep residual 
 ### 요약
 - ResNet 구조에서 필요하지 않은 모듈을 제거하여 성능을 높임(EDSR)
 - 여러 scale에 공통으로 포함되는 정보를 공유하는 새로운 multi-scale 구조를 제안(MDSR)
+- MDSR은 여러 개의 Scale 모델에 비해 적은 수의 매개 변수를 사용하며, 비슷한 성능을 보임
 
 ### Method
 #### (1) EDSR Architecture
@@ -42,6 +43,11 @@ Lim, B., Son, S., Kim, H., Nah, S., & Mu Lee, K. (2017). Enhanced deep residual 
 
   BNormalization은 특정 범위로 정규화를 하는 역할을 하므로 기존의 Classificaton & Detection 문제와 다르게 제거하는 것이 좋음 &#8594; GPU 메모리 사용량을 줄여 결과적으로 더 큰 모델 제작이 가능
 <img src = "./img/edsr/Comparision_residual_block" width="50%"></center>
+
+- 해상도 별(x2, x3, x4) 네트워크 개별 학습: 해상도 별 네트워크 구조는 Upsampling을 제외하고 모두 같음 & Upsampling의 경우 SRGAN과 동일하게 Shuffle을 사용하며 학습 가능
+- Residual scaling을 적용하여 Feature map의 개수를 늘려 더 많은 정보를 학습
+- x2 scale에 대한 사전 학습된 정보를 이용하여 x3, x4 scale을 학습 &#8594; 더 빠른 
+  
 
 ## 3. ESRGAN
 Wang, X., Yu, K., Wu, S., Gu, J., Liu, Y., Dong, C., ... & Change Loy, C. (2018). Esrgan: Enhanced super-resolution generative adversarial networks. In Proceedings of the European Conference on Computer Vision (ECCV) Workshops (pp. 0-0).
