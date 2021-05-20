@@ -112,7 +112,7 @@ Wang, X., Chan, K. C., Yu, K., Dong, C., & Change Loy, C. (2019). Edvr: Video re
 #### (1) Architecture
 - PCD와 TSA 모듈을 사용하여 크고 다양한 동작 및 Blur 현상이 있는 frame들을 효과적으로 처리
 - Fusion된 feature를 Reconstruction 모듈에 대입하고 Upsampling한 결과와, 입력 이미지를 Upsampling한 결과를 더하여 최종 Output 출력
-<img src = "./img/edvr/architecture.PNG" width="75%"></center> 
+<img src = "./img/edvr/architecture.PNG" width="90%"></center> 
   
 #### (2) PCD Module
 - (빨간색 박스): L1 -> L2 -> L3
