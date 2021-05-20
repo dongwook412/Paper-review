@@ -115,11 +115,12 @@ Wang, X., Chan, K. C., Yu, K., Dong, C., & Change Loy, C. (2019). Edvr: Video re
 <img src = "./img/edvr/architecture.PNG" width="90%"></center> 
   
 #### (2) PCD Module
+<img src = "./img/edvr/PCD module.PNG" width="50%"></center> 
 - (빨간색 박스): L1 -> L2 -> L3
 
   𝑡시점과 인접한 𝑡+𝑖시점의 이미지는 여러 개의 Residual Block을 지나 Feature 추출(L1)
   추출된 Feature들에 Strided Convolution을 이용하여 x2 Downsampling 수행하며(L2), 한번 더 수행하면 L3에 대한 Feature를 얻을 수 있음
 
-
+- (파란색 박스) : L3 -> L2 -> L1
 
 #### (3) TSA Module
