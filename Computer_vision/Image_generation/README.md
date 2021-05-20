@@ -122,5 +122,8 @@ Wang, X., Chan, K. C., Yu, K., Dong, C., & Change Loy, C. (2019). Edvr: Video re
   추출된 Feature들에 Strided Convolution을 이용하여 x2 Downsampling 수행하며(L2), 한번 더 수행하면 L3에 대한 Feature를 얻을 수 있음
 
 - (파란색 박스) : L3 -> L2 -> L1
+  L3에 대한 Feature들을 Concatenate하고 Convolution Layer에 대입하여 L3의 Offset을 얻음. 이후 아래 단계의 Offset과 해당 레벨에서의 Feature들을 Concatenate한 결과를 Convolution Layer에 대입하여 L2, L1의 Offset을 얻음
+  L3에 대한 Offset과 𝑡+𝑖시점의 Feature에 대해 Deformable Convolution을 수행하여 L3의 Aligned Feature를 얻음. 이후 아래 단계의 Aligned Feature와 해당 레벨에서 Deformable Convolution한 결과를 Convolution Layer에 대입하여 L2, L1의 Aligned Feature를 얻음
+
 
 #### (3) TSA Module
