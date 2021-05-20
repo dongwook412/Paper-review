@@ -99,3 +99,27 @@ Wang, X., Yu, K., Wu, S., Gu, J., Liu, Y., Dong, C., ... & Change Loy, C. (2018)
 
 ### 적용 결과  
 <img src = "./img/esrgan/comparison.PNG" width="50%"></center>  
+
+## 4. EDVR
+Wang, X., Chan, K. C., Yu, K., Dong, C., & Change Loy, C. (2019). Edvr: Video restoration with enhanced deformable convolutional networks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (pp. 0-0).
+
+### 요약
+- PCD(Pyramid, Cascading and Deformable) & TSA(Temporal and Spatial Attention) 모듈을 사용
+- PCD는 Deformable convolution을 사용하여 feature 수준에서 coarse-to-fine 방식으로 frame이 alignment됨
+- TSA는 여러 align된 feature에서 중요 정보를 시공간적으로 attention하여 fusion
+
+### Method
+#### (1) Architecture
+- Batch Normalization(BN) 제거
+
+  BN은 훈련 중에 batch의 평균과 분산을 사용하여 feature를 normalize하고 테스트 중에 전체 학습 데이터의 추정된 평균과 분산을 사용. 훈련 및 테스트 데이터의 통계값이 많이 다를 때 BN 계층은 unpleasant artifact를 도입하고 일반화 능력 제한 &#8594; BN 레이어를 제거하여 일반화 능력을 향상시키고 계산 복잡성과 메모리 사용량을 줄임   
+  
+#### (2) PCD Module
+- (빨간색 박스): L1 -> L2 -> L3
+
+  𝑡시점과 인접한 𝑡+𝑖시점의 이미지는 여러 개의 Residual Block을 지나 Feature 추출(L1)
+  추출된 Feature들에 Strided Convolution을 이용하여 x2 Downsampling 수행하며(L2), 한번 더 수행하면 L3에 대한 Feature를 얻을 수 있음
+
+
+
+#### (3) TSA Module
