@@ -115,16 +115,36 @@ Wang, X., Chan, K. C., Yu, K., Dong, C., & Change Loy, C. (2019). Edvr: Video re
 <img src = "./img/edvr/architecture.PNG" width="90%"></center> 
   
 #### (2) PCD Module
-<img src = "./img/edvr/PCD module.PNG" width="50%"></center> 
+<img src = "./img/edvr/PCD module.PNG" width="30%"></center> 
 - (빨간색 박스): L1 -> L2 -> L3
 
   𝑡시점과 인접한 𝑡+𝑖시점의 이미지는 여러 개의 Residual Block을 지나 Feature 추출(L1)
   추출된 Feature들에 Strided Convolution을 이용하여 x2 Downsampling 수행하며(L2), 한번 더 수행하면 L3에 대한 Feature를 얻을 수 있음
 
 - (파란색 박스) : L3 -> L2 -> L1
+
   L3에 대한 Feature들을 Concatenate하고 Convolution Layer에 대입하여 L3의 Offset을 얻음. 이후 아래 단계의 Offset과 해당 레벨에서의 Feature들을 Concatenate한 결과를 Convolution Layer에 대입하여 L2, L1의 Offset을 얻음
   
   L3에 대한 Offset과 𝑡+𝑖시점의 Feature에 대해 Deformable Convolution을 수행하여 L3의 Aligned Feature를 얻음. 이후 아래 단계의 Aligned Feature와 해당 레벨에서 Deformable Convolution한 결과를 Convolution Layer에 대입하여 L2, L1의 Aligned Feature를 얻음
 
+- (초록색 박스) : Cascading
+
+  𝑡시점의 Feature와 L1의 Aligned Feature를 Concatenate하고 Convolution Layer에 대입하여 Offset을 얻고, 해당 Offset과 L1의 Aligned Feature에 Deformable Convolution을 수행하여 최종 Aligned Feature를 얻음
+  
+- 최종 Output : 참조 프레임(𝒕시점)에 대응되는 인접 프레임(𝒕+𝒊)들의 정보(Aligned Feature)
 
 #### (3) TSA Module
+<img src = "./img/edvr/TSA module.PNG" width="30%"></center>
+- (빨간색 박스) : Temporal Attention
+
+  참조 프레임의 Feature와 인접 프레임 사이에 Convolution Layer와 Dot Product, Sigmoid를 수행하여 Element-wise 상관 관계를 계산
+  
+  상관 관계 가중치와 해당 시점의 Aligned Feature에 대해 Element-wise Multiplication을 수행하고 Convolution Layer에 대입. 따라서 Temporal Attention을 고려한 Fusion된 Feature를 얻을 수 있음
+  
+- (파란색 박스) : Spatial Attention
+
+  Fusion된 Feature에 대해 x2 Downsampling을 수행하여 더 크거나 복잡한 모션들을 효과적으로 처리
+  
+  PCD 모듈과 같이 피라미드 구조로 구성되어 낮은 Scale에서 얻은 정보들을 높은 Scale로 전달하는 방식으로 Spatial Attention을 고려
+  
+- 최종 Output : 참조 이미지에 시공간적 중요 정보를 갖는 인접 이미지를 고려한 Fusion Feature
